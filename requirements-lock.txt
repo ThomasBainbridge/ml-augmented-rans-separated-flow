@@ -1,4 +1,4 @@
-# Exact package versions used to produce the results in docs/methodology.md
+# Exact package versions used to produce the results (see RESULTS.md)
 # (Python 3.10.12). Pinned for reproducibility. Install with:
 #     pip install -r requirements-lock.txt
 #

@@ -37,6 +37,6 @@ python analysis/06_aposteriori.py
 python analysis/05_robustness.py
 ```
 
-MVR-4 here is a **frozen-nut propagation** (see `docs/methodology.md`), not a
+MVR-4 here is a **frozen-nut propagation** (see `RESULTS.md`), not a
 re-trained coupled closure — it demonstrates the effect, not closed-loop
 robustness in general.
