@@ -1,0 +1,45 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2312                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volScalarField;
+    object      k;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+// Turbulent kinetic energy. Initial estimate from ~5% turbulence intensity:
+// k = 1.5*(I*Ub)^2 = 1.5*(0.05*1)^2 ~ 3.75e-3.
+
+dimensions      [0 2 -2 0 0 0 0];
+
+internalField   uniform 0.00375;
+
+boundaryField
+{
+    "(inlet|outlet)"
+    {
+        type            cyclic;
+    }
+
+    "(front|back)"
+    {
+        type            empty;
+    }
+
+    "(top|hills)"
+    {
+        // Standard wall-function boundary for k in k-omega SST.
+        type            kqRWallFunction;
+        value           $internalField;
+    }
+}
+
+
+// ************************************************************************* //

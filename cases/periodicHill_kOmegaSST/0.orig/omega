@@ -1,0 +1,48 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2312                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volScalarField;
+    object      omega;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+// Specific dissipation rate for k-omega SST.
+// Initial estimate: omega = sqrt(k) / (Cmu^0.25 * L), with L ~ 0.1*H.
+// The streamwise flow is periodic, so inlet/outlet are cyclic and the field
+// is driven by the meanVelocityForce fvOption, not by a fixed inlet value.
+
+dimensions      [0 0 -1 0 0 0 0];
+
+internalField   uniform 40;
+
+boundaryField
+{
+    "(inlet|outlet)"
+    {
+        type            cyclic;
+    }
+
+    "(front|back)"
+    {
+        type            empty;
+    }
+
+    "(top|hills)"
+    {
+        // Blended wall function: valid across the viscous/log layers, so it
+        // is robust to the varying y+ along the curved hill surface.
+        type            omegaWallFunction;
+        value           $internalField;
+    }
+}
+
+
+// ************************************************************************* //

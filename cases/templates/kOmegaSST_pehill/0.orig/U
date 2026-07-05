@@ -1,0 +1,43 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2312                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volVectorField;
+    object      U;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+// Bulk flow driven by a meanVelocityForce (system/fvOptions). Streamwise
+// direction is cyclic; the mesh is quasi-2D (defaultFaces = empty). Units
+// follow the provided DNS meshes: coordinates in hill heights (H = 1) and
+// target bulk velocity Ubar = 0.020188, with nu = 5e-6 (Re_H = 5600).
+
+dimensions      [0 1 -1 0 0 0 0];
+
+internalField   uniform (0.020188 0 0);
+
+boundaryField
+{
+    "(inlet|outlet)"
+    {
+        type            cyclic;
+    }
+    defaultFaces
+    {
+        type            empty;
+    }
+    "(bottomWall|topWall)"
+    {
+        type            noSlip;
+    }
+}
+
+
+// ************************************************************************* //

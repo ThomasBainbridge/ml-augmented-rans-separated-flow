@@ -1,0 +1,15 @@
+# Exact package versions used to produce the results in docs/methodology.md
+# (Python 3.10.12). Pinned for reproducibility. Install with:
+#     pip install -r requirements-lock.txt
+#
+# NOTE: these are the versions present in the environment the study was run in
+# (system interpreter; the venv route was unavailable on this machine — see
+# README). requirements.txt gives looser, forward-compatible floors.
+numpy==1.21.5
+pandas==1.3.5
+scipy==1.8.0
+matplotlib==3.5.1
+scikit-learn==0.23.2
+pyvista==0.48.4
+meshio==5.3.5
+PyYAML==6.0

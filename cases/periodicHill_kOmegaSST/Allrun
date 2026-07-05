@@ -1,0 +1,18 @@
+#!/bin/sh
+cd "${0%/*}" || exit                                # Run from this directory
+. ${WM_PROJECT_DIR:?}/bin/tools/RunFunctions        # Tutorial run functions
+#------------------------------------------------------------------------------
+# Baseline steady RANS (simpleFoam + k-omega SST) for the periodic hill.
+# Run serially: the case is small and this keeps the workflow reproducible
+# without decomposePar/reconstructPar bookkeeping.
+
+canCompile || exit 0            # blockMeshDict uses #codeStream for the hill
+
+restore0Dir                     # copy 0.orig -> 0
+
+runApplication blockMesh
+runApplication topoSet          # builds inletCellZone for meanVelocityForce
+runApplication renumberMesh -overwrite
+runApplication $(getApplication)
+
+#------------------------------------------------------------------------------

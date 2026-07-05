@@ -1,0 +1,82 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2312                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      controlDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+application     simpleFoam;
+
+startFrom       startTime;
+
+startTime       0;
+
+stopAt          endTime;
+
+endTime         5000;
+
+deltaT          1;
+
+writeControl    timeStep;
+
+writeInterval   100;
+
+purgeWrite      3;
+
+// ASCII output keeps the small steady case transparent and easy to parse
+// downstream; foamToVTK handles it fine for the Python pipeline.
+writeFormat     ascii;
+
+writePrecision  8;
+
+writeCompression off;
+
+timeFormat      general;
+
+timePrecision   6;
+
+runTimeModifiable true;
+
+
+// Post-processing computed at write time. These provide the fields needed for
+// the baseline "RANS failure map": wall shear (separation/reattachment),
+// y+ (mesh-quality / wall-function sanity), and turbulence fields.
+functions
+{
+    wallShearStress
+    {
+        type            wallShearStress;
+        libs            (fieldFunctionObjects);
+        writeControl    writeTime;
+        patches         (hills);
+    }
+
+    yPlus
+    {
+        type            yPlus;
+        libs            (fieldFunctionObjects);
+        writeControl    writeTime;
+    }
+
+    // Writes nut, k, omega derived quantities are already primary fields;
+    // this also exposes the turbulence production/length scales if needed.
+    turbulenceFields
+    {
+        type            turbulenceFields;
+        libs            (fieldFunctionObjects);
+        fields          (R);          // Reynolds-stress tensor (Boussinesq)
+        writeControl    writeTime;
+    }
+}
+
+
+// ************************************************************************* //

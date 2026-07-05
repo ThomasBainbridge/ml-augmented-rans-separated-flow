@@ -1,0 +1,29 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2312                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      transportProperties;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+transportModel  Newtonian;
+
+// Kinematic viscosity chosen to match the DNS reference database
+// (Xiao et al. 2020, Re_H = 5600). With bulk velocity Ub = 1 m/s (set by the
+// meanVelocityForce in system/fvOptions) and hill height H = 0.028 m:
+//     Re_H = Ub * H / nu = 1 * 0.028 / 5.0e-6 = 5600.
+// NOTE: the original OpenFOAM tutorial used nu = 2.643e-6 (Re_H ~ 10595),
+// which does NOT match this DNS set. Do not revert without changing the
+// reference data accordingly.
+nu              5.0e-6;
+
+
+// ************************************************************************* //

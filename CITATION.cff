@@ -1,0 +1,56 @@
+cff-version: 1.2.0
+message: "If you use this project, please cite it, and cite the reference DNS dataset below."
+title: "ML-Augmented RANS Modelling of Separated Flow Using DNS Reference Data"
+authors:
+  - family-names: Bainbridge
+    given-names: Thomas
+type: software
+license: MIT
+repository-code: "https://github.com/ThomasBainbridge/ml-augmented-rans-separated-flow"
+keywords:
+  - computational fluid dynamics
+  - turbulence modelling
+  - RANS
+  - machine learning
+  - data-driven closure
+  - periodic hills
+  - OpenFOAM
+abstract: >
+  A reproducible study of whether a lightweight, interpretable machine-learning
+  correction can reduce RANS (k-omega SST) model-form error for separated flow
+  over periodic hills, validated against DNS across five hill geometries. The
+  project spans an a-priori eddy-viscosity correction, a coupled custom-solver
+  a-posteriori test, a tensor-basis neural network, nonlocal features, and a
+  Reynolds-stress anisotropy correction, and maps where — and why — data-driven
+  closure helps and where it does not.
+references:
+  - type: article
+    title: "Flows over periodic hills of parameterized geometries: a dataset for data-driven turbulence modeling from direct simulations"
+    authors:
+      - family-names: Xiao
+        given-names: Heng
+      - family-names: Wu
+        given-names: Jin-Long
+      - family-names: Laizet
+        given-names: Sylvain
+      - family-names: Duan
+        given-names: Lian
+    journal: "Computers & Fluids"
+    volume: 200
+    start: 104431
+    year: 2020
+    doi: "10.1016/j.compfluid.2020.104431"
+  - type: article
+    title: "A curated dataset for data-driven turbulence modelling"
+    authors:
+      - family-names: McConkey
+        given-names: Ryley
+      - family-names: Yee
+        given-names: Eugene
+      - family-names: Lien
+        given-names: Fue-Sang
+    journal: "Scientific Data"
+    volume: 8
+    start: 255
+    year: 2021
+    doi: "10.1038/s41597-021-01034-2"

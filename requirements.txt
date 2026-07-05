@@ -1,0 +1,26 @@
+# Forward-compatible floors. The exact tested versions are in
+# requirements-lock.txt (this study ran on numpy 1.21 / scikit-learn 0.23).
+
+# Core scientific stack
+numpy>=1.21
+pandas>=1.3
+scipy>=1.8
+matplotlib>=3.5
+
+# Machine learning (interpretable-first: ridge, random forest, gradient boosting)
+scikit-learn>=0.23
+
+# OpenFOAM / mesh I/O and interpolation
+pyvista>=0.43        # reads foamToVTK output, unstructured interpolation
+meshio>=5.3          # generic mesh containers
+
+# Config / misc
+pyyaml>=6.0
+
+# Exploration only (not part of the core scripted workflow)
+jupyter>=1.0
+
+# PyTorch: only needed for the tensor-basis neural network (analysis/13_tbnn.py).
+# Optional — the rest of the project runs without it. CPU build is sufficient.
+# Install separately if wanted:  pip install torch
+# torch>=2.0
