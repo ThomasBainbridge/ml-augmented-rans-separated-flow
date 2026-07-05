@@ -163,8 +163,8 @@ substantially rescues generalisation.
 ## Limitations
 
 - Single Reynolds number; generalisation is tested across **geometry / flow
-  type**, not Reynolds number (the Xiao databases are all Re=5600 — see the
-  roadmap for the external-data path).
+  type**, not Reynolds number (the Xiao databases are all Re=5600 — see Future
+  Work in the README for the external-data path).
 - The eddy-viscosity ansatz fails in the ~20% counter-gradient cells.
 - The a-posteriori tests are frozen or fixed-field-coupled propagations, not a
   fully re-trained closure.

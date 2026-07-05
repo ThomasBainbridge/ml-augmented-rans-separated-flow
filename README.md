@@ -44,8 +44,7 @@ OpenFOAM solvers**, a Reynolds-stress **anisotropy** target and a **tensor-basis
 neural network** (MVR-6), **nonlocal** features (MVR-7), and **cross-flow**
 (MVR-8) → **multi-flow** (MVR-9) generalisation, plus mesh-independence,
 statistical-rigor and robustness checks. Headline numbers in
-[Results](#results) / [RESULTS.md](RESULTS.md); breakdown in the
-[roadmap](#roadmap).
+[Results](#results); full walk-through in [RESULTS.md](RESULTS.md).
 
 ---
 
@@ -199,23 +198,18 @@ that measurably helps.
 
 ---
 
-## Roadmap
+## Future Work
 
-Every stage is implemented, tested, and run end-to-end:
-
-- [x] **MVR-1 — Baseline failure map:** k-ω SST vs DNS, mesh-independent, k-ε cross-check.
-- [x] **MVR-2 — Dataset:** co-located RANS+DNS features + β_nut target across 5 geometries.
-- [x] **MVR-3 — Correction + validation:** ridge/RF/GBM, leave-one-geometry-out, invariant vs position features, permutation importance, bootstrap CI.
-- [x] **MVR-4 — A-posteriori:** frozen, self-consistent, and **coupled (custom `simpleFoamBeta` solver)** correction.
-- [x] **MVR-6 — Anisotropy target + TBNN:** barycentric-map discrepancy; tensor-basis NN with a local-closure diagnostic; **coupled `simpleFoamAniso` solver**.
-- [x] **MVR-7 — Nonlocal features:** production/dissipation, TKE convection, curvature, adverse pressure gradient.
-- [x] **MVR-8 — Cross-flow generalisation:** train on hills, test on step/bump/channel.
-- [x] **MVR-9 — Multi-flow training:** leave-one-flow-out; diversity rescues transfer.
-
-**Future (what this motivates):**
-- [ ] Nonlocal / convective-history closures (local invariants are provably insufficient).
-- [ ] Reynolds-number generalisation via external multi-Re DNS (Breuer / ERCOFTAC Case 81; the Xiao databases are all Re=5600).
-- [ ] A fully re-trained coupled closure with conditioning-aware propagation.
+The findings point to three concrete directions, each motivated by evidence in
+this study. First, **nonlocal / convective-history closures** — the g₁ diagnostic
+shows the anisotropy is not a local function of the mean-strain invariants, so
+transport-informed features (which here only partly closed the gap) should be
+developed further. Second, **Reynolds-number generalisation**, which requires an
+external multi-Re DNS source (Breuer / ERCOFTAC Case 81) since the Xiao databases
+are all at Re=5600. Third, a **fully re-trained coupled closure** with
+conditioning-aware propagation of the Reynolds-stress correction, to move beyond
+the frozen and fixed-field propagations used here and address the RANS
+ill-conditioning directly.
 
 ---
 
