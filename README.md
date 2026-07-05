@@ -51,21 +51,13 @@ statistical-rigor and robustness checks. Headline numbers in
 
 ## Why this project
 
-I am an MSc Computational Fluid Dynamics student. This project demonstrates
-**data-driven turbulence-closure modelling** on the problem where RANS models are
-most wrong — smooth-body separation — with a deliberately honest treatment of
-generalisation.
-
-It shares a *workflow philosophy* with my other projects — build a physics
-database, then a validated data-driven surrogate/correction — but is deliberately
-different in physics and ML focus:
-
-- **[OpenFOAM dam-break surrogate](https://github.com/ThomasBainbridge/openfoam-dambreak-surrogate)** — automated VOF database + impact-metric surrogates + POD free-surface reconstruction (two-phase free surface).
-- **[Reduced-order particle-laden flow](https://github.com/ThomasBainbridge/Reduced-Order-Particle-Flow)** — latent-space forecasting of an evolving concentration field (Lagrangian inertial particles).
-
-Here the physics is **turbulence model-form error** and the ML focus is an
-**interpretable, physically-constrained correction** with rigorous
-out-of-distribution validation.
+RANS turbulence models are the workhorse of industrial CFD but are systematically
+wrong for separated flow — the regime that matters for drag, heat transfer and
+loads. This project tackles that error head-on: it builds a physics database from
+OpenFOAM and DNS, learns an **interpretable, physically-constrained correction**,
+and — crucially — subjects it to rigorous **out-of-distribution validation**
+across geometry and flow type, reporting honestly where it works and where it
+does not.
 
 ---
 
