@@ -173,7 +173,9 @@ def _profiles_figure(xy_d, Ud, xy_b, Ub, xy_p, Up, out):
     ax.set_title("A-posteriori correction (frozen-nut propagation), unseen geometry")
     ax.set_xlim(-0.5, 9.5)
     ax.set_ylim(0, grid.Y_TOP)
-    ax.legend(loc="upper right")
+    # Upper left: the profiles lean right as U/Ub grows, so the top-left corner
+    # is clear while the top-right is not.
+    ax.legend(loc="upper left", framealpha=0.9)
     fig.tight_layout()
     fig.savefig(out, dpi=150)
     plt.close(fig)
