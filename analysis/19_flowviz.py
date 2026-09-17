@@ -113,8 +113,7 @@ def fig_rans_vs_dns():
     xy, m = _cell_U(TARGET)
     U = np.asarray(m.cell_data["U"]); Ud = np.asarray(m.cell_data["UDNS"])
     fig, ax = plt.subplots(2, 1, figsize=(9, 6.2), sharex=True)
-    _panel(ax[0], *_grid_fields(xy, U[:, 0], U[:, 1]),
-           "RANS  (k-ω SST)  — recirculation bubble too long")
+    _panel(ax[0], *_grid_fields(xy, U[:, 0], U[:, 1]), "RANS  (k-ω SST)")
     cf = _panel(ax[1], *_grid_fields(xy, Ud[:, 0], Ud[:, 1]), "DNS  (reference)")
     ax[1].set_xlabel("$x/H$")
     fig.colorbar(cf, ax=ax, shrink=0.85, pad=0.02,
