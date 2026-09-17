@@ -71,7 +71,7 @@ def fig_reattachment():
             "ML-corrected\n(unseen geometry)":
                 float(apr.loc["corrected (pred beta, unseen)", "x_reattachment"])}
     fig, ax = plt.subplots(figsize=(7.5, 4.6))
-    ax.bar(list(vals), list(vals.values()), color=["k", RED, GREEN, ORANGE])
+    ax.bar(list(vals), list(vals.values()), color=NAVY)
     ax.axhline(dns, color="k", ls=":", lw=1.1)
     ax.set_ylabel("reattachment location  $x/H$")
     ax.set_title("Reattachment location: baselines and ML correction vs DNS")
